@@ -38,4 +38,20 @@ public class Code1281 {
         return res;
     }
 
+    public int subtractProductAndSum2(int n) {
+
+        int mul = 1;
+        int sum = 0;
+        // 109
+        while (n > 0) {
+            // 获取最后一个数字
+            int lastNum = n % 10;
+            mul *= lastNum;
+            sum += lastNum;
+            n /= 10;
+        }
+
+        return mul - sum;
+    }
+
 }

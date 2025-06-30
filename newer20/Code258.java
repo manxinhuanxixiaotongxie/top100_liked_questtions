@@ -18,6 +18,19 @@ public class Code258 {
         return Integer.parseInt(str);
     }
 
+    public static int addDigits3(int num) {
+
+        while (num >= 10) {
+            int temp = 0;
+            while (num > 0) {
+                temp += num % 10;
+                num /= 10;
+            }
+            num = temp;
+        }
+        return num;
+    }
+
     /**
      * 打表
      * <p>

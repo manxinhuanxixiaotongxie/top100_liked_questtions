@@ -50,6 +50,33 @@ public class Code852 {
         return ans;
     }
 
+    /**
+     * 二分
+     *
+     * @param arr
+     * @return
+     */
+    public int peakIndexInMountainArray3(int[] arr) {
+        int l = 0;
+        int r = arr.length - 1;
+        int ans = l;
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            // 分析可能性
+            // 如果mid+1位置的值比mid大的话 最大山峰只可能在右侧
+            if (arr[mid] < arr[mid + 1]) {
+                ans = mid + 1;
+                l = mid + 1;
+            } else {
+                // 如果mid+1位置的值比mid小的话 最大山峰只可能在左侧
+                ans = mid;
+                r = mid - 1;
+            }
+
+        }
+        return ans;
+    }
+
 
     public static void main(String[] args) {
         Code852 code852 = new Code852();
