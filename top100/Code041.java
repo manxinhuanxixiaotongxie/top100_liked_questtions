@@ -22,6 +22,8 @@ public class Code041 {
             // 发放到垃圾区的条件
             // 本意是为了0位置放1 1位置放2 2位置放3.。。。
             // 第一种情况 当前位left来到了4位置 但是当前位置是3
+            // 第二种情况当前值是5 但是后面4位置已经有了一个5
+            // 第三种情况假设垃圾区的index是8 那么说明可能缺失的正数在1-9 突然来了10
             else if (nums[left] < left + 1 || nums[left] > right + 1 || nums[nums[left] - 1] == nums[left]) {
                 swap(nums, left, right--);
             } else {
