@@ -17,19 +17,27 @@ public class Code022 {
         return ans;
     }
 
-    // 依次在path上填写决定
-    // ( ( ) ) ( )....
-    // 0 1 2 3 4 5
-    // path[0...index-1]决定已经做完了
-    // index位置上，( )
+    /**
+     * 这个递归函数的含义是从0-path.length-1位置上，生成所有可能的括号组合
+     * leftMinusRight: 当前已经生成的左括号数量减去右括号数量
+     * leftRest: 还剩多少左括号没有使用
+     *
+     * @param path
+     * @param index
+     * @param leftMinusRight
+     * @param leftRest
+     * @param ans
+     */
     public static void process(char[] path, int index, int leftMinusRight, int leftRest, List<String> ans) {
         if (index == path.length) {
             ans.add(String.valueOf(path));
         } else {
+            // 暴力递归的时候 只要还有左括号就可以放左括号
             if (leftRest > 0) {
                 path[index] = '(';
                 process(path, index + 1, leftMinusRight + 1, leftRest - 1, ans);
             }
+            // 放有括号的条件是 当前已经生成的左括号数量大于右括号数量
             if (leftMinusRight > 0) {
                 path[index] = ')';
                 process(path, index + 1, leftMinusRight - 1, leftRest, ans);
@@ -37,21 +45,4 @@ public class Code022 {
         }
     }
 
-    private boolean isValid(char[] path) {
-        path[0] = '(';
-        path[path.length - 1] = ')';
-        int count = 0;
-        for (char cha : path) {
-            if (cha == '(') {
-                count++;
-            } else {
-                count--;
-            }
-            if (count < 0) {
-                return false;
-            }
-        }
-        return count == 0;
-
-    }
 }

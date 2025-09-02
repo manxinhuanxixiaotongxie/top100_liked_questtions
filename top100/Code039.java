@@ -26,4 +26,38 @@ public class Code039 {
         }
     }
 
+    List<List<Integer>> ans;
+
+
+    /**
+     * 更优解法
+     * 恢复现场
+     * @param candidates
+     * @param target
+     * @return
+     */
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        ans = new ArrayList<>();
+        process2(candidates, 0, target, new ArrayList<>());
+        return ans;
+    }
+
+    public void process2(int[] candidates, int index, int rest, List<Integer> cur) {
+        if (index == candidates.length) {
+            if (rest == 0) {
+                ans.add(new ArrayList<>(cur));
+            }
+        } else {
+            for (int zhang = 0; zhang * candidates[index] <= rest; zhang++) {
+                for (int i = 0; i < zhang; i++) {
+                    cur.add(candidates[index]);
+                }
+                process2(candidates, index + 1, rest - zhang * candidates[index], cur);
+                for (int i = 0; i < zhang; i++) {
+                    cur.remove(cur.size() - 1);
+                }
+            }
+        }
+    }
+
 }
