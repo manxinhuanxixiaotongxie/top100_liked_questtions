@@ -63,30 +63,30 @@ public class Code416 {
         return dp[0][target];
     }
 
-    /**
-     * 空间压缩
-     * 每一行只依赖下一行的数
-     */
-    public boolean canPartition3(int[] nums) {
-        // 改动态规划
-        int sum = 0;
-        for (int num : nums) sum += num;
-        if ((sum & 1) != 0) return false;
-        // 偶数 可以分割
-        int target = sum >> 1;
-        int n = nums.length;
-        boolean[] dp = new boolean[target + 1];
-        dp[0] = true;
-        // 当前行只依赖下一行的位置的数
-        for (int index = n - 1; index >= 0; index--) {
-            for (int rest = 1; rest <= target; rest++) {
-                if (rest >= nums[index]) {
-                    dp[rest] |= dp[rest - nums[index]];
-                    if (dp[rest]) return true;
-                }
-            }
-        }
-
-        return dp[target];
-    }
+//    /**
+//     * 空间压缩
+//     * 每一行只依赖下一行的数
+//     */
+//    public boolean canPartition3(int[] nums) {
+//        // 改动态规划
+//        int sum = 0;
+//        for (int num : nums) sum += num;
+//        if ((sum & 1) != 0) return false;
+//        // 偶数 可以分割
+//        int target = sum >> 1;
+//        int n = nums.length;
+//        boolean[] dp = new boolean[target + 1];
+//        dp[0] = true;
+//        // 当前行只依赖下一行的位置的数
+//        for (int index = n - 1; index >= 0; index--) {
+//            for (int rest = 1; rest <= target; rest++) {
+//                if (rest >= nums[index]) {
+//                    dp[rest] |= dp[rest - nums[index]];
+//                    if (dp[rest]) return true;
+//                }
+//            }
+//        }
+//
+//        return dp[target];
+//    }
 }
