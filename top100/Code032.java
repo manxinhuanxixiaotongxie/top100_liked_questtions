@@ -52,6 +52,40 @@ public class Code032 {
         return ans;
     }
 
+    /**
+     * 改动态规划
+     *
+     * @param s
+     * @return
+     */
+    public int longestValidParentheses2(String s) {
+        if (s == null || s.length() == 0 || s.length() == 1) {
+            return 0;
+        }
+
+        char[] str = s.toCharArray();
+
+        int N = str.length;
+        int[] dp = new int[N];
+        dp[1] = str[0] == '(' && str[1] == ')' ? 2 : 0;
+        int ans = dp[1];
+        for (int index = 2; index < N; index++) {
+            if (str[index] == ')') {
+                if (str[index - 1] == '(') {
+                    dp[index] = dp[index - 2] + 2;
+                } else {
+                    int lastIndex = dp[index - 1];
+                    if (lastIndex > 0 && index - lastIndex - 1 >= 0 && str[index - lastIndex - 1] == '(') {
+                        dp[index] = lastIndex + 2 + (index - lastIndex - 2 >= 0 ? dp[index - lastIndex - 2] : 0);
+                    }
+                }
+                ans = Math.max(ans, dp[index]);
+            }
+        }
+        return ans;
+    }
+
+
     public static void main(String[] args) {
         Code032 code032 = new Code032();
         String s = "(()())";
