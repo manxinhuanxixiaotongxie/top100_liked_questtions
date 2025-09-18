@@ -10,7 +10,7 @@ import java.util.Map;
  * <p>
  * 你可以按任意顺序返回答案。
  */
-public class Code01 {
+public class Code001 {
     /**
      * 这个题目号称梦开始的地方
      * leetcode第一题
