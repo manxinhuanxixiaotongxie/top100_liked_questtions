@@ -48,4 +48,33 @@ public class Code033 {
         }
         return -1;
     }
+
+    public int search2(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            // 分情况讨论
+            // 左边部分比较长
+            if (nums[left] <= nums[mid]) {
+                // left到mid-1是有序的
+                if (nums[left] <= target && target < nums[mid]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            } else {
+                // mid+1到right是有序的
+                if (nums[mid] < target && target <= nums[right]) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
 }

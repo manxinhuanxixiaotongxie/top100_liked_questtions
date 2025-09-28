@@ -25,7 +25,7 @@ public class Code034 {
                 right = mid - 1;
             }
         }
-        int[] ans = new int[] {-1, -1};
+        int[] ans = new int[]{-1, -1};
         ans[0] = left == nums.length || nums[left] != target ? -1 : left;
         if (ans[0] == -1) {
             return ans;
@@ -40,8 +40,34 @@ public class Code034 {
                 right = mid - 1;
             }
         }
-        ans[1] = left == 0 && nums[left] != target ||  nums[left -1] != target ? -1 : left - 1;
+        ans[1] = left == 0 && nums[left] != target || nums[left - 1] != target ? -1 : left - 1;
         return ans;
+    }
+
+    public int[] searchRange2(int[] nums, int target) {
+        // 数组数有序的
+        int[] ans = new int[]{-1, -1};
+        if (nums == null || nums.length == 0) return ans;
+        int mostLeftIndex = findMostLeftIndex(nums, target);
+        if (mostLeftIndex == nums.length || nums[mostLeftIndex] != target) return ans;
+        int mostRightIndex = findMostLeftIndex(nums, target + 1) - 1;
+        ans[0] = mostLeftIndex;
+        ans[1] = mostRightIndex;
+        return ans;
+    }
+
+    public int findMostLeftIndex(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return left;
     }
 
     public static void main(String[] args) {
