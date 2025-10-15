@@ -17,8 +17,8 @@ public class Code053 {
                 pre = nums[i];
                 ans = Math.max(ans, pre);
             } else {
-                ans = Math.max(ans, pre + nums[i]);
                 pre += nums[i];
+                ans = Math.max(ans, pre);
             }
         }
         return ans;
