@@ -93,4 +93,60 @@ public class Code072 {
         }
         return dp[N1 - 1][N2 - 1];
     }
+
+    /**
+     * 空间压缩技巧
+     * <p>
+     * 每一行都只依赖上一行的数据
+     * 依赖的位置如下：
+     * 第一个位置 左上角的位置
+     * 第二个位置：上顶点的位置
+     * <p>
+     * 采用滚动数组的方式进行空间压缩
+     *
+     * @param text1
+     * @param text2
+     * @return
+     */
+    public int minDistance3(String text1, String text2) {
+        char[] s1 = text1.toCharArray();
+        char[] s2 = text2.toCharArray();
+        if (s1.length == 0) return s2.length;
+        if (s2.length == 0) return s1.length;
+        int N = text2.length();
+        int[] dp = new int[N];
+        // 滚动数组更新的方式
+        // 先填写第一行的值
+        dp[0] = s1[0] == s2[0] ? 0 : 1;
+        for (int i = 1; i < N; i++) {
+            dp[i] = s1[0] == s2[i] ? i : dp[i - 1] + 1;
+        }
+        // 循环次数是不会变的
+        for (int index1 = 1;index1 < s1.length;index1++) {
+            // 开始滚动更新数组
+            // 左上角的数
+            int leftTop = dp[0];
+            dp[0] = s1[index1] == s2[0] ? index1 : dp[0] + 1;
+            for (int index2 = 1; index2 < N; index2++) {
+                if (s1[index1] == s2[index2]) {
+                    int temp = dp[index2];
+                    dp[index2] = leftTop;
+                    leftTop = temp;
+                }else {
+                    // 需要的维护是 上面的位置
+                    int ans = dp[index2] + 1;
+                    // 左边的位置
+                    ans = Math.min(ans, dp[index2 - 1] + 1);
+
+                    // 左上角的位置
+                    ans = Math.min(ans, leftTop + 1);
+                    // 更新左上角的位置
+                    leftTop = dp[index2];
+                    dp[index2] = ans;
+                }
+            }
+        }
+
+        return dp[N - 1];
+    }
 }

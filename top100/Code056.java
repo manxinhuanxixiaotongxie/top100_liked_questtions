@@ -1,7 +1,9 @@
 package top100;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。
@@ -94,6 +96,30 @@ public class Code056 {
             result[i][1] = ans[i][1];
         }
         return result;
+    }
+
+
+    public int[][] merge3(int[][] intervals) {
+        List<int[]> help = new ArrayList<>();
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                // 根据开始位置进行排序
+                return o1[0] - o2[0];
+            }
+        });
+        for (int[] interval : intervals) {
+            int from = interval[0];
+            int to = interval[1];
+            int size = help.size();
+            if (size > 0 && help.get(size -1)[1] <= from) {
+                // 进行合并
+                help.get(size -1)[1] = Math.max(help.get(size -1)[1], to);
+            }else {
+                help.add(interval);
+            }
+        }
+        return  help.toArray(new int[help.size()][]);
     }
 
     public static void main(String[] args) {
