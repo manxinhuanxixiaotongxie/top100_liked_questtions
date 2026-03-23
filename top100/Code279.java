@@ -25,7 +25,10 @@ public class Code279 {
         }
         int ans = Integer.MAX_VALUE;
         for (int i = 1; i * i <= n; i++) {
-            ans = Math.min(ans, process(n - i * i) + 1);
+            int next = process(n - i * i);
+            if (next != Integer.MAX_VALUE) {
+                ans = Math.min(ans, next + 1);
+            }
         }
         return ans;
     }
