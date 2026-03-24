@@ -5,6 +5,8 @@ package top100;
  * <p>
  * 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
  *
+ * 进阶：你可以使用搜索剪枝的技术来优化解决方案，使其在 board 更大的情况下可以更快解决问题？
+ *
  */
 public class Code079 {
     public boolean exist(char[][] board, String word) {
@@ -13,7 +15,8 @@ public class Code079 {
         char[] str = word.toCharArray();
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                if (process(str, board, row, col, i, j, 0)) {
+                // 优化
+                if (board[i][j] == str[0] && process(str, board, row, col, i, j, 0)) {
                     return true;
                 }
             }

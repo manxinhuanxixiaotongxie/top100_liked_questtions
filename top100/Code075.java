@@ -28,4 +28,21 @@ public class Code075 {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+    public void sortColors2(int[] nums) {
+        // 荷兰国旗问题
+        int N = nums.length;
+        int leftIndex = -1;
+        int rightIndex = N;
+        int i = 0;
+        while (i < rightIndex) {
+            if(nums[i] == 0) {
+                swap(nums,++leftIndex,i++);
+            }else if(nums[i] == 2) {
+                swap(nums,i,--rightIndex);
+            } else {
+                i++;
+            }
+        }
+    }
 }
