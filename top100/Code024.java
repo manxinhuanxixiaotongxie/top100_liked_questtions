@@ -1,9 +1,5 @@
 package top100;
 
-import org.w3c.dom.ls.LSInput;
-
-import java.util.List;
-
 public class Code024 {
     // 两两交换链表中的节点
     public ListNode swapPairs(ListNode head) {

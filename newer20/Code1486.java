@@ -20,12 +20,12 @@ public class Code1486 {
         int[] nums = new int[n];
         nums[0] = start;
         int index = 1;
-        while(index < n) {
-            nums[index] = nums[index-1]+2;
+        while (index < n) {
+            nums[index] = nums[index - 1] + 2;
             index++;
         }
         int ans = nums[0];
-        for(int i = 1; i < nums.length;i++) {
+        for (int i = 1; i < nums.length; i++) {
             ans ^= nums[i];
         }
         return ans;
@@ -33,6 +33,7 @@ public class Code1486 {
 
     /**
      * 不需要辅助数组
+     *
      * @param n
      * @param start
      * @return

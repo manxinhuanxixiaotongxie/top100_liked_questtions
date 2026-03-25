@@ -19,19 +19,19 @@ public class Code062 {
      * @return
      */
     public int uniquePaths(int m, int n) {
-        return process(m , n , 0, 0);
+        return process(m, n, 0, 0);
     }
 
     public int process(int m, int n, int curM, int curN) {
-        if (curM == m-1 && curN == n-1) return 1;
+        if (curM == m - 1 && curN == n - 1) return 1;
         // 最后一列 只能向下走
-        if (curN == n-1) {
-            return process(m,n,curM+1,curN);
-        }else if (curM == m-1) {
-            return  process(m,n,curM,curN+1);
-        }else {
-            int right = process(m,n,curM,curN+1);
-            int down = process(m,n,curM+1,curN);
+        if (curN == n - 1) {
+            return process(m, n, curM + 1, curN);
+        } else if (curM == m - 1) {
+            return process(m, n, curM, curN + 1);
+        } else {
+            int right = process(m, n, curM, curN + 1);
+            int down = process(m, n, curM + 1, curN);
             return right + down;
         }
     }

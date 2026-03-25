@@ -19,11 +19,11 @@ public class Code131 {
     public void process(char[] str, int index, LinkedList<String> path, List<List<String>> ans) {
         if (index == str.length) {
             ans.add(new ArrayList<>(path));
-        }else {
+        } else {
             for (int i = index; i < str.length; i++) {
-                if (isPalindrome(str,index,i)) {
-                    path.add(new String(str,index,i-index+1));
-                    process(str,i+1,path,ans);
+                if (isPalindrome(str, index, i)) {
+                    path.add(new String(str, index, i - index + 1));
+                    process(str, i + 1, path, ans);
                     path.removeLast();
                 }
             }

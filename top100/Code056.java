@@ -112,14 +112,14 @@ public class Code056 {
             int from = interval[0];
             int to = interval[1];
             int size = help.size();
-            if (size > 0 && help.get(size -1)[1] <= from) {
+            if (size > 0 && help.get(size - 1)[1] <= from) {
                 // 进行合并
-                help.get(size -1)[1] = Math.max(help.get(size -1)[1], to);
-            }else {
+                help.get(size - 1)[1] = Math.max(help.get(size - 1)[1], to);
+            } else {
                 help.add(interval);
             }
         }
-        return  help.toArray(new int[help.size()][]);
+        return help.toArray(new int[help.size()][]);
     }
 
     public static void main(String[] args) {

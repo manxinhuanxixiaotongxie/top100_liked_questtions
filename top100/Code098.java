@@ -18,21 +18,21 @@ public class Code098 {
         if (leftInfo == null && rightInfo == null) {
             min = root.val;
             max = root.val;
-        }else if (leftInfo ==null) {
+        } else if (leftInfo == null) {
             // 左树空 右树不为空
             if (!rightInfo.isBST || rightInfo.min <= root.val) {
                 isBST = false;
             }
             min = Math.min(rightInfo.min, root.val);
             max = Math.max(rightInfo.max, root.val);
-        }else if (rightInfo == null) {
+        } else if (rightInfo == null) {
             // 左树不为空 右树为空
-            if(!leftInfo.isBST || leftInfo.max >= root.val) {
+            if (!leftInfo.isBST || leftInfo.max >= root.val) {
                 isBST = false;
             }
             min = Math.min(leftInfo.min, root.val);
             max = Math.max(leftInfo.max, root.val);
-        }else {
+        } else {
             // 都不为空
             if (!leftInfo.isBST || !rightInfo.isBST || leftInfo.max >= root.val || rightInfo.min <= root.val) {
                 isBST = false;
@@ -47,12 +47,12 @@ public class Code098 {
      * 二叉搜索树：
      * 左树的最大值小于当前节点
      * 右树的最小值大于当前节点
-     *
+     * <p>
      * 严格大 严格小
      * 左树是二叉搜索树
      * 右树是二叉搜索树
      */
-    class Info{
+    class Info {
         boolean isBST;
         int min;
         int max;

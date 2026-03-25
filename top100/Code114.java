@@ -42,6 +42,58 @@ public class Code114 {
      * @param root
      */
     public void flatten2(TreeNode root) {
+        // 使用morris遍历改写
+        TreeNode cur = root;
+        TreeNode pre = null;
+        while (cur != null) {
+            if (cur.left == null) {
+                if (pre != null) pre.left = cur;
+                pre = cur;
+                cur = cur.right;
+            } else {
+                TreeNode cueLeftNode = cur.left;
+                while (cueLeftNode.right != null && cueLeftNode.right != cur) {
+                    cueLeftNode = cueLeftNode.right;
+                }
+                if (cueLeftNode.right == null) {
+                    // 当前节点是第一次的来到
+                    // 右侧为空
+                    cueLeftNode.right = cur;
+                    if (pre != null) {
+                        pre.left = cur;
+                    }
+                    pre = cur;
+                    cur = cur.left;
+                } else {
+                    // 不为空
+                    cueLeftNode.right = null;
+                    cur = cur.right;
+                }
+            }
+        }
+        cur = root;
+        TreeNode next;
+        while (cur != null) {
+            next = cur.left;
+            cur.left = null;
+            cur.right = next;
+            cur = next;
+        }
+    }
 
+    /**
+     * morris遍历 直接用right指针一步到位
+     *
+     * @param root
+     */
+    /**
+     * morris遍历 说明：无法直接用right指针一步到位
+     * 原因：串联链表时 pre.right=cur 会覆盖某个祖先节点的原始right
+     * 而Morris遍历第二次回到该祖先时需要用 cur.right 找原始右子树，导致冲突
+     * 因此只能用left指针先串联，再第二步转成right（同flatten2）
+     */
+    public void flatten3(TreeNode root) {
+        // 同flatten2，两步走是Morris做法的唯一正确方式
+        flatten2(root);
     }
 }

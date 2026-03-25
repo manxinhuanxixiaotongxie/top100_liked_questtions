@@ -122,7 +122,7 @@ public class Code072 {
             dp[i] = s1[0] == s2[i] ? i : dp[i - 1] + 1;
         }
         // 循环次数是不会变的
-        for (int index1 = 1;index1 < s1.length;index1++) {
+        for (int index1 = 1; index1 < s1.length; index1++) {
             // 开始滚动更新数组
             // 左上角的数
             int leftTop = dp[0];
@@ -132,7 +132,7 @@ public class Code072 {
                     int temp = dp[index2];
                     dp[index2] = leftTop;
                     leftTop = temp;
-                }else {
+                } else {
                     // 需要的维护是 上面的位置
                     int ans = dp[index2] + 1;
                     // 左边的位置

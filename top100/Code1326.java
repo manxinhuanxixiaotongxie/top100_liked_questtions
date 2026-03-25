@@ -14,6 +14,7 @@ package top100;
 public class Code1326 {
     /**
      * 无法Ac 待分析
+     *
      * @param n
      * @param ranges
      * @return

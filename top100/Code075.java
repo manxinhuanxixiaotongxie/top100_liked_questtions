@@ -36,10 +36,10 @@ public class Code075 {
         int rightIndex = N;
         int i = 0;
         while (i < rightIndex) {
-            if(nums[i] == 0) {
-                swap(nums,++leftIndex,i++);
-            }else if(nums[i] == 2) {
-                swap(nums,i,--rightIndex);
+            if (nums[i] == 0) {
+                swap(nums, ++leftIndex, i++);
+            } else if (nums[i] == 2) {
+                swap(nums, i, --rightIndex);
             } else {
                 i++;
             }

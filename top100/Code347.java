@@ -133,7 +133,7 @@ public class Code347 {
 
     public static void main(String[] args) {
         Code347 code347 = new Code347();
-        int[] nums = {3,0,1,0};
+        int[] nums = {3, 0, 1, 0};
         int k = 1;
         int[] res = code347.topKFrequent2(nums, k);
         for (int i = 0; i < res.length; i++) {

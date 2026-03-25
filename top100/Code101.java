@@ -2,23 +2,23 @@ package top100;
 
 public class Code101 {
     public boolean isSymmetric(TreeNode root) {
-        return process(root,root);
+        return process(root, root);
     }
 
-    public boolean process(TreeNode left,TreeNode right) {
-        if(left == null && right == null) {
+    public boolean process(TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
             return true;
         }
-        if(left != null && right == null) {
+        if (left != null && right == null) {
             return false;
         }
-        if(left == null) {
+        if (left == null) {
             return false;
         }
-        if(left.val != right.val) {
+        if (left.val != right.val) {
             return false;
         }
 
-        return process(left.left,right.right) && process(left.right,right.left);
+        return process(left.left, right.right) && process(left.right, right.left);
     }
 }

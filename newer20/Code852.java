@@ -80,7 +80,7 @@ public class Code852 {
 
     public static void main(String[] args) {
         Code852 code852 = new Code852();
-        int[] arr = {40,48,61,75,100,99,98,39,30,10};
+        int[] arr = {40, 48, 61, 75, 100, 99, 98, 39, 30, 10};
         int i = code852.peakIndexInMountainArray(arr);
         System.out.println(i);
         int i1 = code852.peakIndexInMountainArray2(arr);

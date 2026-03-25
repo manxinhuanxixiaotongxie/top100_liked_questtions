@@ -1,7 +1,6 @@
 package top100;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class Code322 {
     public int coinChange(int[] coins, int amount) {
@@ -21,7 +20,7 @@ public class Code322 {
         for (int zhang = 0; zhang * coins[index] <= amount; zhang++) {
             int next = process(coins, amount - zhang * coins[index], index + 1);
             if (next != Integer.MAX_VALUE) {
-                ans =  Math.min(next + zhang, ans);
+                ans = Math.min(next + zhang, ans);
             }
         }
         return ans;

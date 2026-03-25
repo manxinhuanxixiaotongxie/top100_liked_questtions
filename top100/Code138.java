@@ -14,6 +14,7 @@ public class Code138 {
      * @return
      */
     public Node copyRandomList(Node head) {
+        // key是原节点 value是复制的新节点
         Map<Node, Node> map = new HashMap<Node, Node>();
         Node cur = head;
         while (cur != null) {

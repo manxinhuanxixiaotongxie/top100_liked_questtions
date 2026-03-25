@@ -23,10 +23,11 @@ public class Code2413 {
 
     /**
      * n为奇数当前数左移一位 偶数不变
+     *
      * @param n
      * @return
      */
     public int smallestEvenMultiple2(int n) {
-        return  n << (n & 1);
+        return n << (n & 1);
     }
 }

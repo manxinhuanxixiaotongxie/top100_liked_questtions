@@ -35,13 +35,14 @@ public class Code279 {
 
     /**
      * 将上面的方法改成DP
+     *
      * @param n
      * @return
      */
     public int numSquares2(int n) {
         // 最大尝试数量不会超过n的一半
         int[] dp = new int[n + 1];
-        for (int i = 1; i <=n;i++) {
+        for (int i = 1; i <= n; i++) {
             dp[i] = Integer.MAX_VALUE;
             for (int j = 1; j * j <= i; j++) {
                 dp[i] = Math.min(dp[i], dp[i - j * j] + 1);

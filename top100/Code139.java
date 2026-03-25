@@ -132,23 +132,4 @@ public class Code139 {
 
     }
 
-    /**
-     * 这个尝试失败了
-     */
-//    public boolean process(String s,List<String> wordDict,int index) {
-//        if (s.length() == 0) {
-//            return true;
-//        }
-//        if (index == wordDict.size()) {
-//            return false;
-//        }
-//
-//        boolean ans = false;
-//        for (int i = 0;i < wordDict.size();i++) {
-//            // 当前位置进行选择
-//            if (wordDict.contains(s.substring(index, index + i))) {}
-//        }
-//
-//        return ans;
-//    }
 }

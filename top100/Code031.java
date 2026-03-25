@@ -49,15 +49,14 @@ public class Code031 {
      * 链接：https://leetcode.cn/problems/next-permutation/solutions/3621022/jiao-ni-cong-ling-kai-shi-si-kao-zhe-ti-9qfrq/
      * 来源：力扣（LeetCode）
      * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-     *
-     *
+     * <p>
+     * <p>
      * 把上述过程一般化 同时对比下一个整数的算法：
-     *
+     * <p>
      * 下一个整数：
      * 第一步：从右到左 找到第一个小于9的数x
      * 第二步：把x+1 得到y=x+1
      * 第三步:把y右边的数都变成最小的个位数
-     *
      *
      * @param nums
      */
@@ -107,7 +106,7 @@ public class Code031 {
 
     public static void main(String[] args) {
         Code031 code031 = new Code031();
-        int[] nums = {1,  2};
+        int[] nums = {1, 2};
         code031.nextPermutation(nums);
         for (int num : nums) {
             System.out.print(num + " ");

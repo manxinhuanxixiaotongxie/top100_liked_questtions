@@ -32,7 +32,7 @@ public class Code094 {
 
     /**
      * 使用Morris遍历改写
-     *
+     * <p>
      * morris过程：
      * 有左树：
      * 1.找到左树的的最右侧节点 将该节点的右指针指向当前节点
@@ -54,7 +54,7 @@ public class Code094 {
             if (cur.left == null) {
                 res.add(cur.val);
                 cur = cur.right;
-            }else {
+            } else {
                 // 有左树
                 TreeNode curLeftNode = cur.left;
                 while (curLeftNode.right != null && curLeftNode.right != cur) {
@@ -63,7 +63,7 @@ public class Code094 {
                 if (curLeftNode.right == null) {
                     curLeftNode.right = cur;
                     cur = cur.left;
-                }else {
+                } else {
                     // 说明之前已经访问过了
                     res.add(cur.val);
                     curLeftNode.right = null;

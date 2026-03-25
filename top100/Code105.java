@@ -2,7 +2,28 @@ package top100;
 
 import java.util.Map;
 
+/**
+ * 给定两个整数数组 preorder 和 inorder ，其中 preorder 是二叉树的先序遍历，
+ * inorder 是同一棵树的中序遍历，请构造二叉树并返回其根节点。
+ *
+ */
 public class Code105 {
+    /**
+     *
+     * 给定现需遍历 以及中序遍历   构造二叉树
+     * <p>
+     * 思路：
+     * 先序遍历的先后顺序是 头左右  中序遍历的顺序是   左头右
+     * 那么的意味着  在现需遍历的节点 范围是left  right  只要在中序遍历中找到这个节点的位置 就可以认为 这个节点是头结点
+     * <p>
+     * 就能快速求出范围
+     * <p>
+     * 注意  这个题目是不能出现值相等的节点的 否则就无法确定在中序遍历中找到的节点是哪个节点了
+     *
+     * @param preorder
+     * @param inorder
+     * @return
+     */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         // 加速用
         Map<Integer, Integer> indexMap = new java.util.HashMap<>();

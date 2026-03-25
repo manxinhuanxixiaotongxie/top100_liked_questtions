@@ -19,7 +19,7 @@ public class Code394 {
             } else {
                 // 中括号
                 if (str[index] == '[') {
-                    Info next = process(str, index +1);
+                    Info next = process(str, index + 1);
                     // 拼接字符串
                     for (int i = 0; i < times; i++) {
                         res.append(next.str);
