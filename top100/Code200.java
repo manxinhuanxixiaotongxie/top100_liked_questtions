@@ -3,6 +3,10 @@ package top100;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 岛问题解决连通性
+ *
+ */
 public class Code200 {
     /**
      * 并查集思路

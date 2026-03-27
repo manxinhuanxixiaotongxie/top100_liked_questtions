@@ -1,5 +1,9 @@
 package top100;
 
+/**
+ * 翻转一个链表
+ *
+ */
 public class Code206 {
     public ListNode reverseList(ListNode head) {
         ListNode pre = null;

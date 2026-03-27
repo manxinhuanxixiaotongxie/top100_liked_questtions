@@ -63,11 +63,6 @@ public class Code169 {
      * ，那么 a′>b′
      * 始终成立。
      * 对于最后一段，由于 a′>b′，严格众数血多，不可能被其余元素同归于尽，严格众数的生命值最终必然大于 0，所以最后在擂台上的是严格众数。
-     * <p>
-     * 作者：灵茶山艾府
-     * 链接：https://leetcode.cn/problems/majority-element/solutions/3744717/on-mo-er-tou-piao-fa-yan-jin-zheng-ming-ww1zv/
-     * 来源：力扣（LeetCode）
-     * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
      *
      * @return
      */

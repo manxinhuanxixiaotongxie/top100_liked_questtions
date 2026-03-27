@@ -4,8 +4,9 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 /**
- * 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。
- * 滑动窗口每次只向右移动一位。
+ * 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
+ * 你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+ *
  * <p>
  * 返回 滑动窗口中的最大值 。
  */
@@ -30,6 +31,25 @@ public class Code239 {
             if (deque.peekFirst() == i - k + 1) {
                 deque.pollFirst();
             }
+        }
+        return ans;
+    }
+
+    public int[] maxSlidingWindow2(int[] nums, int k) {
+        // 滑动窗口 最大值的滑动窗口 保证窗口的最大值在头部
+        Deque<Integer> queue = new LinkedList<>();
+        int N = nums.length;
+        int[] ans = new int[N - k + 1];
+        int index = 0;
+        for (int i = 0; i < N; i++) {
+            while (!queue.isEmpty() && nums[i] >=nums[queue.peekLast()]) {
+                queue.pollLast();
+            }
+            queue.addLast(i);
+            if (i < k-1) continue;
+            // 结算
+            ans[index++] = nums[queue.peekFirst()];
+            if (queue.peekFirst() == i - k + 1) queue.pollFirst();
         }
         return ans;
     }
