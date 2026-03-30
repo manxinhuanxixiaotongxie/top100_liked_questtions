@@ -1,7 +1,16 @@
 package top100;
 
+/**
+ * 二叉树的直径
+ *
+ */
 public class Code543 {
 
+    /**
+     *
+     * @param root
+     * @return
+     */
     public int diameterOfBinaryTree(TreeNode root) {
         return process(root).maxSide - 1;
     }

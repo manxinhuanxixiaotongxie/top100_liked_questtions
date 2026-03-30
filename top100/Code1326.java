@@ -15,6 +15,8 @@ public class Code1326 {
     /**
      * 无法Ac 待分析
      *
+     * 这样计算只是计算了灌溉单边的最远距离 但是灌溉范围是双边的
+     *
      * @param n
      * @param ranges
      * @return
@@ -37,5 +39,26 @@ public class Code1326 {
             }
         }
         return ans;
+    }
+
+    public int minTaps2(int n, int[] ranges) {
+        int mx = 0;
+        for (int i = 0; i <= n; i++) {
+            if (i > mx) return -1;
+            mx = Math.max(mx, i + ranges[i]);
+        }
+
+        int ans = 0;
+        int mostRight = 0;
+        int nextMostRight = 0;
+        for (int i = 0; i < n; i++) {
+            nextMostRight = Math.max(nextMostRight, i + ranges[i]);
+            if (i == mostRight) {
+                ans++;
+                mostRight = nextMostRight;
+            }
+        }
+        return ans;
+
     }
 }

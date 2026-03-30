@@ -9,6 +9,17 @@ package top100;
  */
 public class Code437 {
 
+    /**
+     * 要拆分成两个子问题：
+     *
+     * 1.以当前节点为起点 找到路径和等于targetSum的路径数
+     *
+     * 2.枚举每个节点作为起点
+     *
+     * @param root
+     * @param targetSum
+     * @return
+     */
     public int pathSum(TreeNode root, long targetSum) {
         if (root == null) {
             return 0;
