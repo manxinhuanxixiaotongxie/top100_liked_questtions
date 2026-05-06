@@ -131,21 +131,18 @@ public class Code076 {
         int len1 = sStr.length;
         int ansLeft = 0;
         int ansRight = len1;
-        int len2 = tStr.length;
         // 记录的是有效覆盖 而不是字符总数
-        int count = len2;
+        int count = tStr.length;
         boolean find = false;
         for (int i = 0; i < len1; i++) {
             // 扩大窗口 保证窗口所有字符能够覆盖t
             while (right < len1 && count > 0) {
                 // help[i]含义 正数：代表你还欠这个字符多少个 负数：代表这个字符在窗口里多出来了
+                // help 账本 count负债
                 if (help[sStr[right] - 'A'] > 0) {
                     count--;
                 }
                 help[sStr[right++] - 'A']--;
-            }
-            if (right < len2) {
-                continue;
             }
             // 结算
             if (count == 0) {
