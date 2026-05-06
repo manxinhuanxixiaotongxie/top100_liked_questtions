@@ -61,4 +61,30 @@ public class Code062 {
 
         return dp[0][0];
     }
+
+    /**
+     * 空间压缩
+     *
+     * @param m
+     * @param n
+     * @return
+     */
+    public int uniquePaths3(int m, int n) {
+        // r的范围是0-m-1  c的范围是0- n-1
+        int[] dp = new int[n];
+        dp[n-1] = 1;
+        for (int c = n - 2; c >= 0; c--) {
+            dp[c] += dp[c + 1];
+        }
+        // 普遍位置
+        for (int r = m - 2; r >= 0; r--) {
+            // dp[c] 保留的是下方（r+1行）的值，dp[c+1] 已更新为右方（r行）的值
+            // 从右往左遍历，c=n-1 时只有下方贡献，无需更新；c<n-1 时加上右方
+            for (int c = n - 2; c >= 0; c--) {
+                dp[c] += dp[c + 1];
+            }
+        }
+
+        return dp[0];
+    }
 }
