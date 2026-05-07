@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * 给你一个字符串 s 和一个字符串列表 wordDict 作为字典，判定 s 是否可以由空格拆分为一个或多个在字典中出现的单词。
+ * 给你一个字符串 s 和一个字符串列表 wordDict 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 s 则返回 true。
+ *
  * 注意：拆分时可以重复使用字典中的单词。 不要求字典中出现的单词全部都使用。
  */
 public class Code139 {

@@ -107,6 +107,16 @@ public class Code076 {
         return !find ? "" : s.substring(ansLeft, ansRight);
     }
 
+
+    public boolean check(int[] help) {
+        for (int i = 0; i < help.length; i++) {
+            if (help[i] > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * 滑动窗口的时候 不需要每次都检查窗口是否能够完全覆盖目标字符串
      *
@@ -161,15 +171,6 @@ public class Code076 {
 
         }
         return !find ? "" : s.substring(ansLeft, ansRight);
-    }
-
-    public boolean check(int[] help) {
-        for (int i = 0; i < help.length; i++) {
-            if (help[i] > 0) {
-                return false;
-            }
-        }
-        return true;
     }
 
 

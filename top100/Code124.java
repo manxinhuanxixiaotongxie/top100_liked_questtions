@@ -8,6 +8,11 @@ package top100;
  * <p>
  * 给你一个二叉树的根节点 root ，返回其 最大路径和 。
  *
+ * 提示：
+ *
+ * 树中节点数目范围是 [1, 3 * 10^4]
+ * -1000 <= Node.val <= 1000
+ *
  */
 public class Code124 {
     public int maxPathSum(TreeNode root) {
@@ -17,8 +22,7 @@ public class Code124 {
 
 
     public Info process(TreeNode root) {
-        // 有负数
-        // 如果是空树的话
+        // 空树不能随意指定最大值，因为存在负数情况 可能会影响计算
         if (root == null) {
             return null;
         }
@@ -30,19 +34,31 @@ public class Code124 {
         int fromNodeMaxValue = root.val;
         int maxValue = root.val;
         if (leftInfo != null && rightInfo != null) {
-            fromNodeMaxValue = Math.max(fromNodeMaxValue, Math.max(leftInfo.fromNodeMaxValue,
+            // 从当前节点出发只有一种可能性，当前节点的值加上左树与右树的单边最大值
+            fromNodeMaxValue = Math.max(fromNodeMaxValue,Math.max(leftInfo.fromNodeMaxValue,
                     rightInfo.fromNodeMaxValue) + root.val);
-            maxValue = Math.max(maxValue, Math.max(leftInfo.maxValue, rightInfo.maxValue));
+            // 整棵树最大值 存在几种可能性 （1）在左树 （2）在右树 （3）当前节点+左树单边最大值 （4）当前节点+右树单边最大值 (5)左数单边最大值 + 当前节点值 + 右树单边最大值
+            // 情况（1）（2）
+            maxValue = Math.max(fromNodeMaxValue,Math.max(leftInfo.maxValue, rightInfo.maxValue));
+            // 情况（3）（4）
             maxValue = Math.max(maxValue, Math.max(leftInfo.fromNodeMaxValue, rightInfo.fromNodeMaxValue)
                     + root.val);
+            // 情况（5）
             maxValue = Math.max(maxValue, leftInfo.fromNodeMaxValue + rightInfo.fromNodeMaxValue + root.val);
         } else if (leftInfo != null) {
-            fromNodeMaxValue = Math.max(fromNodeMaxValue, leftInfo.fromNodeMaxValue + root.val);
-            maxValue = Math.max(maxValue, leftInfo.maxValue);
+            // 左树不为空 右树为空
+            // 单边节点值只有一种可能 当前节点值+左树单边最大值
+            fromNodeMaxValue = Math.max(fromNodeMaxValue,leftInfo.fromNodeMaxValue + root.val);
+            // 最大值 （1）左树最大值 （2）左树单边最大值 + 当前节点值
+            // 情况（1）
+            maxValue = Math.max(maxValue,Math.max(fromNodeMaxValue,leftInfo.maxValue));
+            // 情况（2）
             maxValue = Math.max(maxValue, leftInfo.fromNodeMaxValue + root.val);
         } else if (rightInfo != null) {
-            fromNodeMaxValue = Math.max(fromNodeMaxValue, rightInfo.fromNodeMaxValue + root.val);
-            maxValue = Math.max(maxValue, rightInfo.maxValue);
+            // 右树不为空 单边最大值 只有一种可能 当前节点值+右树单边最大值
+            fromNodeMaxValue = Math.max(fromNodeMaxValue,rightInfo.fromNodeMaxValue + root.val);
+            // 整棵树最大值 （1）右树的最大值  （2）当前节点 + 右树单边最大值
+            maxValue = Math.max(maxValue,rightInfo.maxValue);
             maxValue = Math.max(maxValue, rightInfo.fromNodeMaxValue + root.val);
         }
         return new Info(fromNodeMaxValue, maxValue);

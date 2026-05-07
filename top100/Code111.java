@@ -20,7 +20,11 @@ public class Code111 {
      */
     public int process(TreeNode root) {
         if (root == null) return 0;
-        if (root.left == null && root.right == null) return 1;
+        // 这行代码可以不要 这已经是叶子节点了 要也没关系
+//        if (root.left == null && root.right == null) return 1;
+        // 这两个判断条件是不能去掉的 比如一个链表形的二叉树 是只能计算单边的
+        // 这个题目有情况要讨论
+        // 1.无左树 有右树 2.有左树 无右树 3.无左树 无右树 4.有左树 有右树
         if (root.left == null) return process(root.right) + 1;
         if (root.right == null) return process(root.left) + 1;
         int left = process(root.left);
@@ -73,5 +77,36 @@ public class Code111 {
         }
         return min;
     }
+
+    /**
+     * 加强对方法1的理解
+     * 二叉树的递归套路
+     *
+     * @param root
+     * @return
+     */
+    public int minDepth3(TreeNode root) {
+        if (root == null) return 0;
+        return process2(root);
+    }
+
+    public Integer process2(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        Integer left = process2(root.left);
+        Integer right = process2(root.right);
+        if (left == null && right == null) {
+            return 1;
+        } else if (left == null) {
+            // 右树不为空
+            return right + 1;
+        } else if (right == null) {
+            return left + 1;
+        } else {
+            return Math.min(left, right) + 1;
+        }
+    }
+
 
 }

@@ -73,4 +73,32 @@ public class Code094 {
         }
         return res;
     }
+
+    public List<Integer> inorderTraversal3(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();
+        if (root == null) {
+            return res;
+        }
+        // 使用Morris遍历改写
+        TreeNode cur = root;
+        while (cur != null) {
+            TreeNode left = cur.left;
+            if (left != null) {
+                // 有左树
+                while (left.right != null && left.right != cur) {
+                    left = left.right;
+                }
+                if (left.right == null) {
+                    left.right = cur;
+                    cur = cur.left;
+                    continue;
+                }else {
+                    left.right = null;
+                }
+            }
+            res.add(cur.val);
+            cur = cur.right;
+        }
+        return res;
+    }
 }
