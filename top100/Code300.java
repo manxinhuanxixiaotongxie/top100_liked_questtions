@@ -1,6 +1,8 @@
 package top100;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -127,6 +129,50 @@ public class Code300 {
             ans = Math.max(ans, dp[i]);
         }
         return ans;
+    }
+
+    /**
+     * 这道题有更好的解法
+     * 定义一个列表 g  g[i]的含义是所有长度为i+1的递增子序列中，结尾数字的最小值
+     * g[0] = 2 含义是 最长递增子序列的长度为1的时候 取得长度为1的最小值是2
+     *
+     * @param nums
+     * @return
+     */
+    public int lengthOfLIS5(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        List<Integer> g = new ArrayList<>();
+        for (int x : nums) {
+            // 二分查找 在g中寻找第一个大于或者等于当前数字x的位置
+            int j = lowerBound2(g, x);
+            if (j == g.size()) {
+                //>=x 的 g[j] 不存在 意味着 当前数字x比g中所有的数字都大 也就是当前数字x可以接在g中所有的序列后面 形成一个更长的递增子序列
+                g.add(x); //
+            } else {
+                /**
+                 * “虽然我现在不能让楼盖得更高，但我能把第 $j+1$ 层的地板换成更薄、更轻的材料（更小的 $x$），这样以后我就能更容易地往上加盖。”
+                 *
+                 */
+                g.set(j, x);
+            }
+        }
+        return g.size();
+    }
+
+    private int lowerBound2(List<Integer> g, int target) {
+        int left = 0;
+        int right = g.size() - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (g.get(mid) < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return left;
     }
 
     /**

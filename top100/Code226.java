@@ -6,7 +6,9 @@ public class Code226 {
     }
 
     /**
-     * 这个递归为什么会有问题
+     * 这个递归为什么会有问题?
+     *
+     * root.left在后续递归的过程中是需要被使用的，不能在此处进行修改
      *
      * @param root
      * @return

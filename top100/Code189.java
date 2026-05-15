@@ -24,4 +24,32 @@ public class Code189 {
             nums[i] = map.get(i);
         }
     }
+
+    /**
+     * 双指针 最优解
+     *
+     * @param nums
+     * @param k
+     */
+    public void rotate2(int[] nums, int k) {
+        int n = nums.length;
+        k = (k % n);
+        // 整体翻转
+        reverse(nums, 0, n - 1);
+        // 0-k-1进行翻转
+        reverse(nums, 0, k - 1);
+        // k -n-1进行翻转
+        reverse(nums, k, n - 1);
+    }
+
+    public void reverse(int[] nums, int left, int right) {
+
+        while (left < right) {
+            int temp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+            left++;
+            right--;
+        }
+    }
 }

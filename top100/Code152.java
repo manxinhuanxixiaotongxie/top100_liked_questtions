@@ -20,7 +20,7 @@ public class Code152 {
         int n = nums.length;
         int ans = nums[0];
 
-        for (int i = n - 2; i >= 0; i--) {
+        for (int i = n - 1; i >= 0; i--) {
             // 必须要i开头
             // 总共有多少个子数组
             // i到i
@@ -40,7 +40,60 @@ public class Code152 {
     }
 
     /**
-     * 动态规划解法
+     * 使用辅助数组
+     *
+     * @param nums
+     * @return
+     */
+    public int maxProduct2(int[] nums) {
+        int n = nums.length;
+        int[] max = new int[n];
+        int[] min = new int[n];
+        max[n - 1] = nums[n - 1];
+        min[n - 1] = nums[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            // 计算当前位置最大值
+            max[i] = Math.max(nums[i], Math.max(min[i + 1] * nums[i], max[i + 1] * nums[i]));
+            // 计算当前位置的最小值
+            min[i] = Math.min(nums[i], Math.min(min[i + 1] * nums[i], max[i + 1] * nums[i]));
+        }
+        int ans = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            if (max[i] > ans) {
+                ans = max[i];
+            }
+        }
+        return ans;
+    }
+
+    /**
+     * 减少一次遍历
+     *
+     * @param nums
+     * @return
+     */
+    public int maxProduct3(int[] nums) {
+        int n = nums.length;
+        int[] max = new int[n];
+        int[] min = new int[n];
+        max[n - 1] = nums[n - 1];
+        min[n - 1] = nums[n - 1];
+        int ans = nums[n-1];
+        for (int i = n - 2; i >= 0; i--) {
+            // 计算当前位置最大值
+            max[i] = Math.max(nums[i], Math.max(min[i + 1] * nums[i], max[i + 1] * nums[i]));
+            // 计算当前位置的最小值
+            min[i] = Math.min(nums[i], Math.min(min[i + 1] * nums[i], max[i + 1] * nums[i]));
+            ans = Math.max(ans, max[i]);
+        }
+
+        return ans;
+    }
+
+
+    /**
+     * 压缩空间做法：
+     * 观察相对位置 当前位置最大值收到下一个位置最大值 最小值的影响
      * <p>
      * <p>
      * 必须以i位置开头
@@ -50,7 +103,7 @@ public class Code152 {
      * @param nums
      * @return
      */
-    public int maxProduct2(int[] nums) {
+    public int maxProduct4(int[] nums) {
         int n = nums.length;
         int max = nums[n - 1], min = nums[n - 1];
         int ans = nums[n - 1];

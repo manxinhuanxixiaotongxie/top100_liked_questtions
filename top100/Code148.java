@@ -14,51 +14,55 @@ public class Code148 {
         return process(head, null);
     }
 
-    public ListNode process(ListNode from, ListNode to) {
-        if (from == null) {
-            return from;
+    // 利用归并排序的特性 将整个链表修改成有序的链表
+    // 这个函数的含义是 在链表的范围内进行归并排序 并且返回经过归并排序的之后的新的头结点
+    public ListNode process(ListNode head, ListNode tail) {
+        if (head == tail || head.next == null) {
+            return head;
         }
-        if (from.next == to) {
-            from.next = null;
-            return from;
-        }
-        // 找到链表的中点
-        ListNode slow = from;
-        ListNode fast = from;
-        // o o o o
-        while (fast != to) {
+        // 找到中点 从head到tail的终点 这点是上中点或者是下中点不是很重要
+        ListNode slow = head;
+        ListNode fast = head.next.next;
+        // 快慢指针 快指针一次走两步 慢指针一次走一步 知道快指针来到了最后一个位置
+        while (fast != tail) {
             slow = slow.next;
-            fast = fast.next;
-            if (fast != to) {
-                fast = fast.next;
+            if (fast == null || fast.next == null) {
+                break;
             }
+            fast = fast.next.next;
         }
-        ListNode l = process(from, slow);
-        ListNode r = process(slow, to);
+        // 中点
+        // 切断左右两段链表
+        ListNode mid = slow.next;
+        slow.next = null;
+        // 利用归并排序的特性对链表进行排序
+        ListNode l = process(head, null);
+        ListNode r = process(mid, null);
+        // 合并左右两侧链表
         return merge(l, r);
     }
 
     public ListNode merge(ListNode head1, ListNode head2) {
-        ListNode dummy = new ListNode(0);
-        ListNode head = dummy;
-        ListNode l = head1;
-        ListNode r = head2;
-        while (l != null && r != null) {
-            if (l.val < r.val) {
-                dummy.next = l;
-                l = l.next;
+        ListNode dummyHead = new ListNode(0);
+        ListNode cur = dummyHead;
+        while (head1 != null && head2 != null) {
+            if (head1.val <= head2.val) {
+                cur.next = head1;
+                head1 = head1.next;
             } else {
-                dummy.next = r;
-                r = r.next;
+                cur.next = head2;
+                head2 = head2.next;
             }
-            dummy = dummy.next;
+            cur = cur.next;
         }
-        if (l != null) {
-            dummy.next = l;
+        if (head1 != null) {
+            cur.next = head1;
         }
-        if (r != null) {
-            dummy.next = r;
+        if (head2 != null) {
+            cur.next = head2;
         }
-        return head.next;
+
+        return dummyHead.next;
     }
+
 }

@@ -12,10 +12,13 @@ public class Code283 {
         // 设计一个双指针
         // left的含义是非0元素的下一个位置
         int left = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
-                swap(nums, left++, i);
+        int index = 0;
+        while (index < nums.length) {
+            // 当前位置是0 left不变  当前位置不是0 交换i与left
+            if (nums[index] != 0) {
+                swap(nums, left++, index);
             }
+            index++;
         }
     }
 
